@@ -15,12 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $posts = Post::all();
-
-    ddd((string)$posts[0]);
-
     return view('posts', [
-      'posts' => $posts
+      'posts' => Post::all()
     ]);
 });
 
