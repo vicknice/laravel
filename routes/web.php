@@ -17,9 +17,7 @@ use Illuminate\Support\Facades\File;
 */
 
 Route::get('/', function () {
-    $files = File::files(resource_path("/posts/"));
-
-    $posts = collect($files)->map(function ($file) {
+    $posts = collect(File::files(resource_path("/posts/")))->map(function ($file) {
       $document = YamlFrontMatter::parseFile($file);
 
       return new Post(
