@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 
-class Post
+class Note
 {
 
     public $title;
