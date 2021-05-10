@@ -79,7 +79,7 @@ php artisan config:cache
 {{-- php artisan horizon:purge --}}
 {{-- php artisan horizon:terminate --}}
 
-php artisan migrate
+php artisan migrate:fresh --seed
 php artisan queue:restart
 
 {{ logMessage("php artisan up") }}
