@@ -17,13 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    \Illuminate\Support\Facades\DB::listen(function ($query) {
-      // \Illuminate\Support\Facades\Log::info($query->sql);
-      logger($query->sql);
-    });
-
     return view('posts', [
-        'posts' =>  Post::latest()->with('category')->get()
+        'posts' =>  Post::latest()->with('category', 'author')->get()
     ]);
 });
 
