@@ -13,9 +13,9 @@ class Post extends Model
 
     protected $with = ['category', 'author'];
 
-    public function scopeFilter($query)
+    public function scopeFilter($query, array $filters)
     {
-        if (request('search')) {
+        if (isset($filters['search'])) {
             $query
                 ->where('title', 'like', '%' . request('search') . '%')
                 ->orWhere('title', 'like', '%' . request('search') . '%');
