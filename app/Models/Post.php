@@ -13,14 +13,23 @@ class Post extends Model
 
     protected $with = ['category', 'author'];
 
-    public function category()
+    public function scopeFilter($query)
     {
-      return $this->belongsTo(Category::class);
+        if (request('search')) {
+            $query
+                ->where('title', 'like', '%' . request('search') . '%')
+                ->orWhere('title', 'like', '%' . request('search') . '%');
+        }
+
     }
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 
     public function author()
     {
-      return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

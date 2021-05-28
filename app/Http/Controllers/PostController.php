@@ -18,7 +18,7 @@ class PostController extends Controller
         }
 
         return view('posts', [
-            'posts' =>  $this->getPosts(),
+            'posts' =>  Post::latest()->filter()->get(),
             'categories' => Category::all()
         ]);
     }
@@ -28,18 +28,5 @@ class PostController extends Controller
           return view('post', [
               'post' => $post,
           ]);
-    }
-
-    protected function getPosts()
-    {
-        $posts = Post::latest();
-
-        if (request('search')) {
-            $posts
-                ->where('title', 'like', '%' . request('search') . '%')
-                ->orWhere('title', 'like', '%' . request('search') . '%');
-        }
-
-        return $posts->get();
     }
 }
